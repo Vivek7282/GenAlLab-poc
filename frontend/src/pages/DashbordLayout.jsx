@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Sidebar from '../componets/Sidebar';
 import { useSelector } from "react-redux";
 import axios from "axios";
-import {BASE_URL} from "../Service/helper.js";
+import {JAVA_BASE_URL, BASE_URL} from "../Service/helper.js";
 const DashboardLayout = ({ children }) => {
   const { activeMenu } = useSelector((state) => state.dashboardContext);
   const [message, setMessage] = useState("");

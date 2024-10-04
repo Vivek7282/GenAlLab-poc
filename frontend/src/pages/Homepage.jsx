@@ -18,7 +18,7 @@ const App = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`${JAVA_BASE_URL}/forward-to-python`); // Java server URL
+            const response = await axios.get(`${BASE_URL}/message`); // Java server URL
             console.log(response.data);
           } catch (error) {
             console.error("Error in fetching data:", error);
