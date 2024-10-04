@@ -1,14 +1,18 @@
-import React from 'react';
-import ChatPromt from "../componets/chatPromt";
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to </h1>
-      </header>
-      <ChatPromt/>
+import styles from "../style";
+import HomePageLayout from "./DashbordLayout";
+import ChatPromt from "../componets/ChatPromt";
+const App = () => (
+  <HomePageLayout>
+    
+
+    <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
+      <div className={`${styles.boxWidth}`}>
+        
+        <ChatPromt />
+       
+      </div>
     </div>
-  );
-}
+  </HomePageLayout>
+);
 
 export default App;
