@@ -15,17 +15,7 @@ import { JAVA_BASE_URL } from "../Service/helper.js";
 const App = () => {
     const [message, setMessage] = useState("");
     
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(`${BASE_URL}/message`); // Java server URL
-            console.log(response.data);
-          } catch (error) {
-            console.error("Error in fetching data:", error);
-          }
-        };
-        fetchData();
-      }, []);
+   
       
     useEffect(() => {
       const fetchData = async () => {
@@ -48,7 +38,7 @@ const App = () => {
   
             {/* New div to display the message */}
             <div className="message-box" style={{ marginTop: '20px', color: 'black' }}>
-              <h3>Message from Flask:</h3>
+              <h3>Message from Flask Backend:</h3>
               <p>{message}</p>
             </div>
           </div>

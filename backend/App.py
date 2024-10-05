@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
 import cohere
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def index():
 @app.route('/message', methods=['GET'])
 def message():
     print("Incoming request to '/message' endpoint from React")  # Logs to the console
-    return jsonify({"message": "This is a message from the /message endpoint!"})
+    return jsonify({"message": "I am connected 😁"}) 
 
 @app.route('/query', methods=['POST'])
 def chat():
@@ -50,6 +50,41 @@ def chat():
     # Return the extracted text in a JSON format
     return jsonify({"response": assistant_response})
 
+# POST route to receive the user prompt
+@app.route('/send-stream', methods=['POST'])
+def send_stream():
+    global current_prompt
+    data = request.get_json()
+    current_prompt = data.get("message")  # Store the prompt in a global variable or session
+    return jsonify({"status": "ok"})
+
+# GET route to stream the response
+@app.route('/stream-chat', methods=['GET'])
+def stream_chat():
+    global current_prompt
+    if not current_prompt:
+        return "No prompt available", 400
+    
+    # Create a Cohere client and initialize the chat stream
+    co = cohere.ClientV2("Y9yCkVlUkr2xZvRYrI5wwIj1CmWHWocax435rzWi")
+    response = co.chat_stream(
+        model="command-r-plus-08-2024",
+        messages=[
+            {
+                "role": "user",
+                "content": current_prompt
+            }
+        ]
+    )
+
+    def generate():
+        # Stream the chat response as events
+        for event in response:
+            if event.type == "content-delta":
+                chunk = event.delta.message.content.text
+                yield f"data: {chunk}\n\n"  # SSE format (Server-Sent Events)
+
+    return Response(generate(), content_type="text/event-stream")
 
 if __name__ == '__main__':
     app.run(debug=True)

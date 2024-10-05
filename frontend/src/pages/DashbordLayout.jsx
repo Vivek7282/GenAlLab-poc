@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }) => {
       try {
         const response = await axios.get(`${BASE_URL}/message`);
         setMessage(response.data);
-        // console.log(response.data);
+         console.log(response.data);
       } catch (error) {
         console.log(error);
       } 
