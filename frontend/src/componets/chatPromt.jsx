@@ -63,7 +63,7 @@ function App() {
             {/* Input form */}
             <input
               type="text"
-              placeholder="Enter your message"
+              placeholder="Message"
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
               className="p-2 border border-gray-300 rounded mb-4"

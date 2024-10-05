@@ -9,8 +9,9 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import {BASE_URL} from "../Service/helper.js";
 import { JAVA_BASE_URL } from "../Service/helper.js";
-
-
+import DocChatPromt from "../componets/DocChatPromt.jsx"
+import SummarizeEmail from "../componets/EmailSummarized.jsx";
+import {home} from "../assets/Home"
 
 const App = () => {
     const [message, setMessage] = useState("");
@@ -35,7 +36,8 @@ const App = () => {
         <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <ChatPromt />
-  
+            <DocChatPromt />
+            <SummarizeEmail/>
             {/* New div to display the message */}
             <div className="message-box" style={{ marginTop: '20px', color: 'black' }}>
               <h3>Message from Flask Backend:</h3>
