@@ -27,6 +27,29 @@ export const generateLLMResponse = async (message) => {
   }
 };
 
+export const generateLLMResponseCohere = async (message) => {
+  try {
+    const response = await cohere.chat({
+      model: "command-a-03-2025",
+      messages: [
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+    });
+
+    // Extract text safely
+    const llmResponse =
+      response?.message?.content?.[0]?.text ||
+      "No response from Cohere";
+
+    return llmResponse;
+  } catch (err) {
+    console.error("Error while generating LLM response:", err);
+    throw err;
+  }
+};
 // export const generateLLMResponse = async (message) => {
 //   try {
 //     const response = await fetch("http://localhost:5000/api/chat", {
@@ -71,8 +94,13 @@ export const generateLLMResponse = async (message) => {
 
 
 // src/utils/chatUtils/chatapi.js
- 
+import { CohereClientV2 } from "cohere-ai";
 
+// Initialize Cohere client
+const cohere = new CohereClientV2({
+  token: 'Y9yCkVlUkr2xZvRYrI5wwIj1CmWHWocax435rzWi',
+});
+ 
 const API_BASE = "http://localhost:5000/api/chat";
 
 export const saveChat = async (user, session_id, message, response) => {

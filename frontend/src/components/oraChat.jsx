@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { generateLLMResponse } from "../utils/chatUtils/chatapi.js";
+import { generateLLMResponse, generateLLMResponseCohere } from "../utils/chatUtils/chatapi.js";
 import { formatResponse } from "../utils/chatUtils/chatFormater.jsx";
 import {
   saveChat,
@@ -143,7 +143,7 @@ Now the user says: ${prompt.trim()}
 Respond naturally, emotionally, and intelligently, adapting your tone based on whether it’s technical or conversational.
 `;
 
-      const llmResponse = await generateLLMResponse(fullPrompt);
+      const llmResponse = await generateLLMResponseCohere(fullPrompt);
       const endTime = Date.now();
       setResponseTime(endTime - startTime);
 
