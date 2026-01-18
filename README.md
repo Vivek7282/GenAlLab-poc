@@ -2,9 +2,15 @@ Steps to run this code
 
 1. Run the frontend - npm run dev
 2. run the backend - 
-        a. source venv/bin/activate
-        b. python3 -m venv venv
+For Unix/Mac-OS
+        a. python3 -m venv venv
+        b. source venv/bin/activate
         c. python3 app.py
+For Windows:
+        a. \venv\Scripts\Activate.ps1
+        b. python3 app.py
+Incase of blocking by powershell: run command: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser followed by above commands
+
 
 3. Run the ollama model
          a. start the app ollama

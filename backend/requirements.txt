@@ -4,4 +4,11 @@ flask-jwt-extended
 pymongo
 dnspython
 python-dotenv
+fitz
+chromadb
+sentence_transformers
+langchain
+langchain_community
+flask_pymongo
+PyMuPDF
 
